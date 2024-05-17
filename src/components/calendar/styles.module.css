@@ -1,0 +1,55 @@
+.calendarRoot {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  padding: 14px;
+}
+.calendarHeader {
+  border: solid 1px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.calendarDaysContainer {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 0.1fr repeat(4, 0.5fr);
+  justify-items: center;
+  overflow: auto;
+  border: solid 1px black;
+}
+.calendarDayBox {
+  position: relative;
+  width: 40px;
+  height: 40px;
+
+  @media screen and (min-width: 576px) {
+    width: 80px;
+    height: 80px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 110px;
+    height: 110px;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+.calendarDayName {
+  border-bottom: 1px black;
+  margin: 0;
+}
+.calendarDayNumber {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  color: white;
+  z-index: 1;
+}
