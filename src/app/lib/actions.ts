@@ -10,11 +10,6 @@ export async function createComment(
 ): Promise<{ success: boolean }> {
   const commentText = await formData.get("commentText");
   try {
-    console.log(
-      "fetch url",
-      `${API_BASE_URL}/comments/${formData.get("imageDate")}`
-    );
-
     const res = await fetch(
       `${API_BASE_URL}/comments/${formData.get("imageDate")}`,
       {

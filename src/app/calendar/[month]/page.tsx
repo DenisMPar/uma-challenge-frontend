@@ -2,7 +2,7 @@ import { generateMonthsPaths } from "@/app/lib/date";
 import { CalendarComponent } from "@/components/calendar";
 import { format, parseISO } from "date-fns";
 export async function generateStaticParams() {
-  const months = generateMonthsPaths(12);
+  const months = generateMonthsPaths(8);
   return months.map((month) => ({
     month: format(parseISO(month), "yyyy-MM"),
   }));
