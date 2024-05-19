@@ -1,6 +1,6 @@
 import { getStartAndEndDates } from "@/app/lib/date";
 import { NaseImageComponent } from "../image";
-import { getPicturesData } from "@/app/lib/api";
+import { getPicturesData, PicturesType } from "@/app/lib/api";
 
 export async function CalendarTable({ monthDate }: { monthDate: string }) {
   const { startDate, endDate, numberOfFirstDay } =
@@ -10,7 +10,7 @@ export async function CalendarTable({ monthDate }: { monthDate: string }) {
 
   return (
     <>
-      {picturesData?.map((picture: any, index: number) => {
+      {picturesData?.map((picture: PicturesType, index: number) => {
         return (
           <NaseImageComponent
             numberOfFirstDay={numberOfFirstDay}
