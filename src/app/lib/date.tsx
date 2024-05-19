@@ -26,6 +26,7 @@ export function generateMonthsPaths(numberOfMonths?: number) {
     monthsArray.push(formattedDate);
     currentDate.setMonth(currentDate.getMonth() - 1);
   }
+  console.log({ monthsArray });
 
   return monthsArray;
 }
