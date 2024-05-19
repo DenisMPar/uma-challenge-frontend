@@ -35,12 +35,14 @@ export function CalendarNavigate({ monthDate }: { monthDate: string }) {
   return (
     <div className={styles.navigateRoot}>
       <PrimaryButton
+        variant="small"
         disabled={isLastPosibleMonth}
         onClick={() => handleClick("previous")}
       >
         {"<"}
       </PrimaryButton>
       <PrimaryButton
+        variant="small"
         disabled={isActualMonth}
         onClick={() => handleClick("next")}
       >

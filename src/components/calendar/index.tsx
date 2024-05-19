@@ -2,17 +2,12 @@ import { CalendarTableSkeleton } from "@/ui/skeletons/calendar";
 import { getMonthName } from "@/utilities/months";
 import { getMonth, getYear, parseISO } from "date-fns";
 import { Suspense } from "react";
-import { CalendarNavigate } from "./calendar-navigate";
-import { CalendarTable } from "./calendar-table";
-import styles from "./styles.module.css";
+import { CalendarNavigate } from "./navigate";
 
-export async function CalendarComponent({
-  monthDate,
-  modal,
-}: {
-  monthDate: string;
-  modal: string;
-}) {
+import styles from "./styles.module.css";
+import { CalendarTable } from "./table";
+
+export async function CalendarComponent({ monthDate }: { monthDate: string }) {
   const dateObject = parseISO(monthDate);
   const year = getYear(dateObject);
   const month = getMonth(dateObject);
@@ -25,7 +20,7 @@ export async function CalendarComponent({
         <hr
           style={{
             width: "100%",
-            borderTop: "1px solid #046b99",
+            borderTop: "1px solid var(--border-medium-blue)",
             margin: "0",
           }}
         />
@@ -56,9 +51,8 @@ export async function CalendarComponent({
         <div className={styles.calendarDayNameContainer}>
           <h4 className={styles.calendarDayName}>Sat.</h4>
         </div>
-
         <Suspense fallback={<CalendarTableSkeleton />}>
-          <CalendarTable monthDate={monthDate} modal={modal} />
+          <CalendarTable monthDate={monthDate} />
         </Suspense>
       </div>
     </div>
