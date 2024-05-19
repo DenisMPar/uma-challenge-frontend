@@ -30,8 +30,6 @@ export const getImageComments = async (
   imageDate: string
 ): Promise<commentsType[] | false> => {
   try {
-    console.log("send req");
-
     const res = await fetch(
       `http://localhost:3000/api/v1/comments/${imageDate}`,
       { cache: "no-store", next: { tags: ["comments"] } }
@@ -39,8 +37,6 @@ export const getImageComments = async (
     const resJson = await res.json();
     return resJson.comments;
   } catch (error) {
-    console.log(error);
-
     return false;
   }
 };
