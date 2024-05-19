@@ -3,13 +3,18 @@
 import { revalidateTag } from "next/cache";
 const API_BASE_URL =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:3001/api/v1"
+    ? "http://localhost:3080/api/v1"
     : process.env.NEXT_PUBLIC_API_BASE_URL;
 export async function createComment(
   formData: FormData
 ): Promise<{ success: boolean }> {
   const commentText = await formData.get("commentText");
   try {
+    console.log(
+      "fetch url",
+      `${API_BASE_URL}/comments/${formData.get("imageDate")}`
+    );
+
     const res = await fetch(
       `${API_BASE_URL}/comments/${formData.get("imageDate")}`,
       {

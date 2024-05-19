@@ -1,7 +1,7 @@
 import { UUID } from "crypto";
 const API_BASE_URL =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:3001/api/v1"
+    ? "http://localhost:3080/api/v1"
     : process.env.NEXT_PUBLIC_API_BASE_URL;
 export interface PicturesType {
   copyright?: string;

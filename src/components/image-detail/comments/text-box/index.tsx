@@ -17,7 +17,6 @@ export function CommentTextBox({ imageDate }: { imageDate: string }) {
         const { success } = await createComment(formData);
         ref?.current?.reset();
         setIsLoading(false);
-
         if (!success) {
           setError(true);
         } else {
