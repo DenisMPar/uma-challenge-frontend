@@ -4,19 +4,18 @@ import { PrimaryButton } from "@/ui/buttons";
 import { Spinner } from "@/ui/spinner";
 import { useRef, useState } from "react";
 import styles from "./styles.module.css";
+import { SubmitButton } from "./button";
 
 export function CommentTextBox({ imageDate }: { imageDate: string }) {
   const ref = useRef<null | HTMLFormElement>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const [error, setError] = useState<boolean>(false);
   return (
     <form
       ref={ref}
       action={async (formData) => {
-        setIsLoading(true);
-        const { success } = await createComment(formData);
         ref?.current?.reset();
-        setIsLoading(false);
+        const { success } = await createComment(formData);
         if (!success) {
           setError(true);
         } else {
@@ -31,9 +30,7 @@ export function CommentTextBox({ imageDate }: { imageDate: string }) {
         name="commentText"
       />
       <input type="hidden" name="imageDate" value={imageDate} />
-      <PrimaryButton type="submit" variant="large">
-        {isLoading ? <Spinner /> : "Comment"}
-      </PrimaryButton>
+      <SubmitButton />
       {error && (
         <span className={styles.spanError}>
           Something went wrong. Please try again.
