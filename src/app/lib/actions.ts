@@ -1,14 +1,17 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
-
+const API_BASE_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3001/api/v1"
+    : process.env.NEXT_PUBLIC_API_BASE_URL;
 export async function createComment(
   formData: FormData
 ): Promise<{ success: boolean }> {
   const commentText = await formData.get("commentText");
   try {
     const res = await fetch(
-      `http://localhost:3000/api/v1/comments/${formData.get("imageDate")}`,
+      `${API_BASE_URL}/comments/${formData.get("imageDate")}`,
       {
         method: "POST",
         headers: {

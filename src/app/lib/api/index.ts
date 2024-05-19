@@ -1,5 +1,8 @@
 import { UUID } from "crypto";
-
+const API_BASE_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3001/api/v1"
+    : process.env.NEXT_PUBLIC_API_BASE_URL;
 export interface PicturesType {
   copyright?: string;
   date: string;
@@ -16,7 +19,7 @@ export const getPicturesData = async (
 ): Promise<PicturesType[]> => {
   const response = await fetch(
     `https://api.nasa.gov/planetary/apod?start_date=${startDate}&end_date=${endDate}&api_key=${process.env.NASA_API_KEY}`,
-    { cache: "no-store" }
+    { cache: "force-cache" }
   );
   const data = await response.json();
   return data;
@@ -30,22 +33,13 @@ export const getImageComments = async (
   imageDate: string
 ): Promise<commentsType[] | false> => {
   try {
-    const res = await fetch(
-      `http://localhost:3000/api/v1/comments/${imageDate}`,
-      { cache: "no-store", next: { tags: ["comments"] } }
-    );
+    const res = await fetch(`${API_BASE_URL}/comments/${imageDate}`, {
+      cache: "no-store",
+      next: { tags: ["comments"] },
+    });
     const resJson = await res.json();
     return resJson.comments;
   } catch (error) {
     return false;
   }
 };
-export function postNewComment(commentText: string, imageDate: string) {
-  return fetch(`http://localhost:3000/api/v1/comments/${imageDate}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ text: commentText }),
-  });
-}
