@@ -1,39 +1,67 @@
-import { getPicturesData } from "@/app/lib/data";
-import { getDate, parseISO, startOfMonth } from "date-fns";
-import Image from "next/image";
-import stlyes from "./styles.module.css";
+import { getStartAndEndDates } from "@/app/lib/date";
+import { NaseImageComponent } from "./nasa-image";
+import { ImageDetail } from "../image-detail";
+
 export async function CalendarTable({
-  startDate,
-  endDate,
+  monthDate,
+  modal,
 }: {
-  startDate: string;
-  endDate: string;
+  monthDate: string;
+  modal: string;
 }) {
-  const dateObject = parseISO(startDate);
-  const firstDayOfMonth = startOfMonth(dateObject);
-  const numberOfFirstDay = getDate(firstDayOfMonth);
-  const picturesData = await getPicturesData(startDate, endDate);
+  const { startDate, endDate, numberOfFirstDay } =
+    getStartAndEndDates(monthDate);
+
+  // const picturesData = await getPicturesData(startDate, endDate);
+  const picturesData: any = [
+    {
+      copyright: "Chirag Upreti",
+      date: "2024-05-18",
+      explanation:
+        "Graceful star trail arcs reflect planet Earth's daily rotation in this colorful night skyscape. To create the timelapse composite, on May 12 consecutive exposures were recorded with a camera fixed to a tripod on the shores of the Ashokan Reservoir, in the Catskills region of New York, USA. North star Polaris is near the center of the star trail arcs. The broad trail of a waxing crescent Moon is on the left, casting a strong reflection across the reservoir waters. With intense solar activity driving recent geomagnetic storms, the colorful aurora borealis or northern lights, rare to the region, shine under Polaris and the north celestial pole.   AuroraSaurus: Report your aurora observations",
+      hdurl:
+        "https://apod.nasa.gov/apod/image/2405/AuroraStartrails_chiragupreti.jpg",
+      media_type: "image",
+      service_version: "v1",
+      title: "North Celestial Aurora",
+      url: "https://apod.nasa.gov/apod/image/2405/AuroraStartrails_chiragupreti1024.jpg",
+    },
+    {
+      copyright: "Chirag Upreti",
+      date: "2024-05-18",
+      explanation:
+        "Graceful star trail arcs reflect planet Earth's daily rotation in this colorful night skyscape. To create the timelapse composite, on May 12 consecutive exposures were recorded with a camera fixed to a tripod on the shores of the Ashokan Reservoir, in the Catskills region of New York, USA. North star Polaris is near the center of the star trail arcs. The broad trail of a waxing crescent Moon is on the left, casting a strong reflection across the reservoir waters. With intense solar activity driving recent geomagnetic storms, the colorful aurora borealis or northern lights, rare to the region, shine under Polaris and the north celestial pole.   AuroraSaurus: Report your aurora observations",
+      hdurl:
+        "https://apod.nasa.gov/apod/image/2405/AuroraStartrails_chiragupreti.jpg",
+      media_type: "image",
+      service_version: "v1",
+      title: "North Celestial Aurora",
+      url: "https://apod.nasa.gov/apod/image/2405/AuroraStartrails_chiragupreti1024.jpg",
+    },
+    {
+      copyright: "Chirag Upreti",
+      date: "2024-05-18",
+      explanation:
+        "Graceful star trail arcs reflect planet Earth's daily rotation in this colorful night skyscape. To create the timelapse composite, on May 12 consecutive exposures were recorded with a camera fixed to a tripod on the shores of the Ashokan Reservoir, in the Catskills region of New York, USA. North star Polaris is near the center of the star trail arcs. The broad trail of a waxing crescent Moon is on the left, casting a strong reflection across the reservoir waters. With intense solar activity driving recent geomagnetic storms, the colorful aurora borealis or northern lights, rare to the region, shine under Polaris and the north celestial pole.   AuroraSaurus: Report your aurora observations",
+      hdurl:
+        "https://apod.nasa.gov/apod/image/2405/AuroraStartrails_chiragupreti.jpg",
+      media_type: "image",
+      service_version: "v1",
+      title: "North Celestial Aurora",
+      url: "https://apod.nasa.gov/apod/image/2405/AuroraStartrails_chiragupreti1024.jpg",
+    },
+  ];
 
   return (
     <>
-      {picturesData?.map((picture, index) => {
+      {picturesData?.map((picture: any, index: number) => {
         return (
-          <div
-            className={stlyes.calendarDayBox}
-            style={index === 0 ? { gridColumnStart: numberOfFirstDay + 1 } : {}}
+          <NaseImageComponent
+            numberOfFirstDay={numberOfFirstDay}
             key={picture.title}
-          >
-            <span className={stlyes.calendarDayNumber}>{index + 1}</span>
-            {picture.media_type === "image" && (
-              <Image src={picture.url} alt="nasa-day-image" fill />
-            )}
-            {picture.media_type === "video" && (
-              <video
-                src={picture.url}
-                style={{ objectFit: "cover", width: "100%", height: "100%" }}
-              />
-            )}
-          </div>
+            pictureData={picture}
+            index={index}
+          />
         );
       })}
     </>

@@ -1,55 +1,66 @@
-import stlyes from "./styles.module.css";
-import { Suspense, useEffect, useState } from "react";
-import {
-  endOfMonth,
-  startOfMonth,
-  format,
-  parseISO,
-  getYear,
-  getMonth,
-} from "date-fns";
-import { CalendarTable } from "./calendar-table";
-import { getMonthName } from "@/utilities/months";
 import { CalendarTableSkeleton } from "@/ui/skeletons/calendar";
+import { getMonthName } from "@/utilities/months";
+import { getMonth, getYear, parseISO } from "date-fns";
+import { Suspense } from "react";
 import { CalendarNavigate } from "./calendar-navigate";
+import { CalendarTable } from "./calendar-table";
+import styles from "./styles.module.css";
 
-export function CalendarComponent({
-  startDate,
-  endDate,
+export async function CalendarComponent({
+  monthDate,
+  modal,
 }: {
-  startDate: string;
-  endDate: string;
+  monthDate: string;
+  modal: string;
 }) {
-  const dateObject = parseISO(startDate);
+  const dateObject = parseISO(monthDate);
   const year = getYear(dateObject);
   const month = getMonth(dateObject);
-  const monthName = getMonthName(month);
+  const monthName = getMonthName(month + 1);
+
   return (
-    <div className={stlyes.calendarRoot}>
-      <header className={stlyes.calendarHeader}>
+    <div className={styles.calendarRoot}>
+      <header className={styles.calendarHeader}>
         <h1>{year}</h1>
         <hr
           style={{
             width: "100%",
-            borderTop: "1px solid black",
+            borderTop: "1px solid #046b99",
             margin: "0",
           }}
         />
-        <h2>{monthName}</h2>
+        <div className={styles.calendaryMonthContainer}>
+          <h2>{monthName}</h2>
+          <CalendarNavigate monthDate={monthDate} />
+        </div>
       </header>
-      <div className={stlyes.calendarDaysContainer}>
-        <h4 className={stlyes.calendarDayName}>sun.</h4>
-        <h4 className={stlyes.calendarDayName}>mon.</h4>
-        <h4 className={stlyes.calendarDayName}>tues.</h4>
-        <h4 className={stlyes.calendarDayName}>wed.</h4>
-        <h4 className={stlyes.calendarDayName}>trurs.</h4>
-        <h4 className={stlyes.calendarDayName}>fri.</h4>
-        <h4 className={stlyes.calendarDayName}>sat.</h4>
+      <div className={styles.calendarDaysContainer}>
+        <div className={styles.calendarDayNameContainer}>
+          <h4 className={styles.calendarDayName}>Sun.</h4>
+        </div>
+        <div className={styles.calendarDayNameContainer}>
+          <h4 className={styles.calendarDayName}>Mon..</h4>
+        </div>
+        <div className={styles.calendarDayNameContainer}>
+          <h4 className={styles.calendarDayName}>Tue.</h4>
+        </div>
+        <div className={styles.calendarDayNameContainer}>
+          <h4 className={styles.calendarDayName}>Wed.</h4>
+        </div>
+        <div className={styles.calendarDayNameContainer}>
+          <h4 className={styles.calendarDayName}>Thurs.</h4>
+        </div>
+        <div className={styles.calendarDayNameContainer}>
+          <h4 className={styles.calendarDayName}>Fry.</h4>
+        </div>
+        <div className={styles.calendarDayNameContainer}>
+          <h4 className={styles.calendarDayName}>Sat.</h4>
+        </div>
+
         <Suspense fallback={<CalendarTableSkeleton />}>
-          <CalendarTable startDate={startDate} endDate={endDate} />
+          <CalendarTable monthDate={monthDate} modal={modal} />
         </Suspense>
       </div>
-      <CalendarNavigate />
     </div>
   );
 }

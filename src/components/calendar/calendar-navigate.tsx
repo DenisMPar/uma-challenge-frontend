@@ -1,5 +1,6 @@
 "use client";
 
+import { PrimaryButton } from "@/ui/buttons";
 import {
   addMonths,
   subMonths,
@@ -9,52 +10,46 @@ import {
   subDays,
   addDays,
   parseISO,
+  isSameMonth,
+  parse,
 } from "date-fns";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import styles from "./styles.module.css";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
-export function CalendarNavigate() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const { replace } = useRouter();
-  function handleClick(actionType: {
-    type: "month" | "year";
-    action: "next" | "previous";
-  }) {
-    let newStartDate = "";
-    let newEndDate = "";
-    const startDate = searchParams.get("start_date");
-    const currentDate = startDate ? new Date(parseISO(startDate)) : new Date();
-    if (actionType.type === "month") {
-      if (actionType.action === "next") {
-        const lastDayOfCurrentMonth = endOfMonth(currentDate);
-        const nextMonthStart = addDays(lastDayOfCurrentMonth, 1);
-        const nextMonthEnd = endOfMonth(nextMonthStart);
-        newStartDate = format(nextMonthStart, "yyyy-MM-dd");
-        newEndDate = format(nextMonthEnd, "yyyy-MM-dd");
-      }
-      if (actionType.action === "previous") {
-        const previousMonthEnd = subDays(startOfMonth(currentDate), 1);
-        const previousMonthStart = startOfMonth(previousMonthEnd);
-        newStartDate = format(previousMonthStart, "yyyy-MM-dd");
-        newEndDate = format(previousMonthEnd, "yyyy-MM-dd");
-      }
+export function CalendarNavigate({ monthDate }: { monthDate: string }) {
+  const router = useRouter();
+  const dateObject = parseISO(monthDate);
+  const isActualMonth = isSameMonth(dateObject, new Date());
+  const lastPosibleMonth = parse("1995-06", "yyyy-MM", new Date());
+  const isLastPosibleMonth = isSameMonth(dateObject, lastPosibleMonth);
+
+  function handleClick(actionType: "previous" | "next") {
+    if (actionType === "previous") {
+      return (
+        !isLastPosibleMonth &&
+        router.push(`/calendar/${format(subMonths(dateObject, 1), "yyyy-MM")}`)
+      );
     }
-
-    const params = new URLSearchParams(searchParams);
-    params.set("start_date", newStartDate);
-    params.set("end_date", newEndDate);
-    replace(`${pathname}?${params.toString()}`);
+    return (
+      !isActualMonth &&
+      router.push(`/calendar/${format(addMonths(dateObject, 1), "yyyy-MM")}`)
+    );
   }
+
   return (
-    <div>
-      <button
-        onClick={() => handleClick({ type: "month", action: "previous" })}
+    <div className={styles.navigateRoot}>
+      <PrimaryButton
+        disabled={isLastPosibleMonth}
+        onClick={() => handleClick("previous")}
       >
         {"<"}
-      </button>
-      <button onClick={() => handleClick({ type: "month", action: "next" })}>
+      </PrimaryButton>
+      <PrimaryButton
+        disabled={isActualMonth}
+        onClick={() => handleClick("next")}
+      >
         {">"}
-      </button>
+      </PrimaryButton>
     </div>
   );
 }

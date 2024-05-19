@@ -1,18 +1,22 @@
 .calendarRoot {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - 65px);
   width: 100%;
   padding: 14px;
 }
 .calendarHeader {
-  border: solid 1px black;
+  background-color: #dce4ef;
+  border: solid 1px #046b99;
+  border-bottom: none;
+  border-radius: 14px 14px 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .calendarDaysContainer {
+  background-color: #dce4ef;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -21,31 +25,60 @@
   grid-template-rows: 0.1fr repeat(4, 0.5fr);
   justify-items: center;
   overflow: auto;
-  border: solid 1px black;
+  border: solid 1px #046b99;
+  border-radius: 0 0 14px 14px;
+  gap: 15px;
 }
 .calendarDayBox {
   position: relative;
-  width: 40px;
+  width: 100%;
   height: 40px;
-
+  cursor: pointer;
+  outline: 1px solid black;
   @media screen and (min-width: 576px) {
-    width: 80px;
     height: 80px;
   }
   @media screen and (min-width: 768px) {
-    width: 110px;
     height: 110px;
   }
   @media screen and (min-width: 1200px) {
-    width: 140px;
     height: 140px;
   }
 }
+.calendaryMonthContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 5px;
+}
+.navigateRoot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.calendarDayNameContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px #046b99;
+  border-top: none;
+}
+.calendarDayNameContainer:nth-child(1) {
+  border-left: none;
+}
 
+.calendarDayNameContainer:nth-child(7) {
+  border-right: none;
+}
 .calendarDayName {
-  border-bottom: 1px black;
   margin: 0;
 }
+
 .calendarDayNumber {
   position: absolute;
   top: 5px;
