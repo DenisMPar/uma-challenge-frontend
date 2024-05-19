@@ -1,9 +1,9 @@
 "use client";
 import { createComment } from "@/app/lib/actions";
 import { PrimaryButton } from "@/ui/buttons";
+import { Spinner } from "@/ui/spinner";
 import { useRef, useState } from "react";
 import styles from "./styles.module.css";
-import { Spinner } from "@/ui/spinner";
 
 export function CommentTextBox({ imageDate }: { imageDate: string }) {
   const ref = useRef<null | HTMLFormElement>(null);

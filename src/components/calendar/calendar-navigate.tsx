@@ -3,18 +3,14 @@
 import { PrimaryButton } from "@/ui/buttons";
 import {
   addMonths,
-  subMonths,
   format,
-  startOfMonth,
-  endOfMonth,
-  subDays,
-  addDays,
-  parseISO,
   isSameMonth,
   parse,
+  parseISO,
+  subMonths,
 } from "date-fns";
+import { useRouter } from "next/navigation";
 import styles from "./styles.module.css";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 export function CalendarNavigate({ monthDate }: { monthDate: string }) {
   const router = useRouter();

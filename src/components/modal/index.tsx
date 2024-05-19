@@ -1,6 +1,6 @@
 "use client";
-import { useSearchParams, usePathname } from "next/navigation";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import styles from "./styles.module.css";
 function Modal({ children }: { children: React.ReactNode }) {
   const searchParams = useSearchParams();

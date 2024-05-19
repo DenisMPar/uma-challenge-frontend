@@ -1,7 +1,7 @@
+import { Header } from "@/components/header";
 import type { Metadata } from "next";
 import { Garamond } from "../ui/fonts";
 import "./globals.css";
-import { Header } from "@/components/header";
 
 export const metadata: Metadata = {
   title: "Create Next App",

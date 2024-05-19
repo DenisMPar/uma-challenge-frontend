@@ -1,10 +1,8 @@
-import { PicturesType } from "@/app/lib/api";
-import Image from "next/image";
-import styles from "./styles.module.css";
-import { CommentsSection } from "./comments";
-import { useImageData } from "@/hooks";
 import { CalendarSearchParams } from "@/app/calendar/[month]/page";
+import Image from "next/image";
 import Modal from "../modal";
+import { CommentsSection } from "./comments";
+import styles from "./styles.module.css";
 
 export function ImageDetail({
   imageData,

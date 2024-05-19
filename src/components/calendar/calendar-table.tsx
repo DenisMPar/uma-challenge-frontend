@@ -1,6 +1,5 @@
 import { getStartAndEndDates } from "@/app/lib/date";
 import { NaseImageComponent } from "./nasa-image";
-import { ImageDetail } from "../image-detail";
 
 export async function CalendarTable({
   monthDate,
