@@ -3,13 +3,13 @@ export function PrimaryButton({
   children,
   onClick,
   disabled,
-  className,
+  variant,
   type,
 }: {
   children: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
-  className?: string;
+  variant: "small" | "medium" | "large";
   type?: "submit" | "reset" | "button";
 }) {
   return (
@@ -17,7 +17,7 @@ export function PrimaryButton({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={styles.primaryButton + " " + className}
+      className={styles.primaryButton + " " + styles[variant]}
     >
       {children}
     </button>

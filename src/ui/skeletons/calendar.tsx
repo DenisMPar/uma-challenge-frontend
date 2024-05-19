@@ -9,3 +9,6 @@ export function CalendarTableSkeleton() {
     </>
   );
 }
+export function LargeImageSkeleton() {
+  return <div className={stlyes.largeSkeleton}></div>;
+}

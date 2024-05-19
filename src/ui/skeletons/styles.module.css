@@ -7,6 +7,15 @@
   animation: pulse 1.5s ease-in-out infinite;
 }
 
+.largeSkeleton {
+  width: 100vw;
+  height: calc(100vh - 65px);
+  background-color: #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
 @keyframes pulse {
   0% {
     background-color: #ccc;
