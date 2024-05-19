@@ -1,3 +1,9 @@
+.imageDetailRoot {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  background-color: var(--background-gray);
+}
 .imageDetailContainer {
   position: relative;
   display: flex;

@@ -32,7 +32,7 @@ export function CommentTextBox({ imageDate }: { imageDate: string }) {
         name="commentText"
       />
       <input type="hidden" name="imageDate" value={imageDate} />
-      <PrimaryButton type="submit" className={styles.commentButton}>
+      <PrimaryButton type="submit" variant="large">
         {isLoading ? <Spinner /> : "Comment"}
       </PrimaryButton>
       {error && (

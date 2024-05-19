@@ -2,7 +2,7 @@ import { getImageComments } from "@/app/lib/api";
 import styles from "./styles.module.css";
 import { CommentTextBox } from "./text-box";
 export async function CommentsSection({ imageDate }: { imageDate: string }) {
-  const comments = await getImageComments("2024-05-18");
+  const comments = await getImageComments(imageDate);
 
   return (
     <div className={styles.CommentsRoot}>
