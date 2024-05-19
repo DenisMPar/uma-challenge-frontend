@@ -1,0 +1,21 @@
+.primaryButton {
+  width: 100%;
+  height: 20px;
+  background: none;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #105bd8;
+  cursor: pointer;
+}
+
+.arrowButton:hover {
+  background-color: #0b3d91;
+}
+
+.arrowButton:active {
+  background-color: #061f4a;
+}
+.arrowButton:disabled {
+  background-color: #ccc;
+}

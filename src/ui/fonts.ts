@@ -1,7 +1,6 @@
-import { Inter } from "next/font/google";
-import { Lato } from "next/font/google";
-export const inter = Inter({
+import { EB_Garamond } from "next/font/google";
+
+export const Garamond = EB_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "600"],
+  weight: ["400", "600"],
 });
-export const lato = Lato({ subsets: ["latin"], weight: ["700"] });
