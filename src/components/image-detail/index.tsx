@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Modal from "../modal";
 import { CommentsSection } from "./comments";
 import styles from "./styles.module.css";
 import { DetailSearchParams } from "@/app/detail/page";
