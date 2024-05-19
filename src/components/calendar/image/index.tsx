@@ -34,7 +34,7 @@ export function NaseImageComponent({
       ) : (
         <div className={stlyes.calendarDayNoImage}>
           <span className={stlyes.calendarDayNumber}>{index + 1}</span>
-          No image available
+          No image for this day
         </div>
       )}
     </>
