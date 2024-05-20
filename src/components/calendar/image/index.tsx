@@ -29,7 +29,12 @@ export function NaseImageComponent({
           key={pictureData.title}
         >
           <span className={stlyes.calendarDayNumber}>{index + 1}</span>
-          <Image src={pictureData.url} alt="nasa-day-image" fill />
+          <Image
+            src={pictureData.url}
+            alt="nasa-day-image"
+            fill
+            sizes="(min-width: 440px) calc(14.26vw - 17px), calc(1.67vw + 35px)"
+          />
         </Link>
       ) : (
         <div className={stlyes.calendarDayNoImage}>
