@@ -3,13 +3,12 @@
   display: flex;
   flex-direction: column;
   padding: 15px;
+  padding-top: 0;
   background-color: var(--background-gray);
-  @media screen and (min-width: 768px) {
-    height: 100%;
-    min-height: calc(100vh - 65px);
-  }
+  min-height: calc(100vh - 65px);
 }
 .backButton {
+  height: 30px;
   text-decoration: none;
   background-color: white;
   color: var(--primary-blue);
@@ -22,7 +21,10 @@
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  margin: 15px;
+  margin: 12px 0;
+  @media screen and (min-width: 576px) {
+    margin: 15px 0;
+  }
 }
 .backButton:hover {
   border-color: #0b3d91;

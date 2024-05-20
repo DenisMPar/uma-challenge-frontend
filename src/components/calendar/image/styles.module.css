@@ -25,6 +25,7 @@
 }
 .calendarDayNoImage {
   font-size: 6px;
+  padding: 4px;
   color: white;
   position: relative;
   width: 100%;
