@@ -1,10 +1,20 @@
 .daySkeleton {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 40px;
   margin: 10px;
   background-color: #ccc;
   border-radius: 5px;
   animation: pulse 1.5s ease-in-out infinite;
+
+  @media screen and (min-width: 576px) {
+    height: 80px;
+  }
+  @media screen and (min-width: 768px) {
+    height: 110px;
+  }
+  @media screen and (min-width: 1200px) {
+    height: 140px;
+  }
 }
 
 .largeSkeleton {

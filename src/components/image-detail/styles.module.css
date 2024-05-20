@@ -1,5 +1,5 @@
 .imageDetailRoot {
-  height: calc(100vh - 65px);
+  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 15px;

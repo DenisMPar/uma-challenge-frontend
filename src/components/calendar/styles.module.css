@@ -1,7 +1,7 @@
 .calendarRoot {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 65px);
+  min-height: calc(100vh - 65px);
   width: 100%;
   padding: 14px;
 }
