@@ -9,6 +9,33 @@
     min-height: calc(100vh - 65px);
   }
 }
+.backButton {
+  text-decoration: none;
+  background-color: white;
+  color: var(--primary-blue);
+  padding: 5px 10px;
+  border: solid 3px var(--primary-blue);
+  border-radius: 5px;
+  cursor: pointer;
+  max-width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin: 15px;
+}
+.backButton:hover {
+  border-color: #0b3d91;
+  color: #0b3d91;
+}
+
+.backButton:active {
+  border-color: #061f4a;
+  color: #061f4a;
+}
+.backButton:disabled {
+  border-color: #ccc;
+}
 .imageDetailContainer {
   position: relative;
   display: flex;
